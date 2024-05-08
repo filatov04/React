@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-import '../style/style.css'
+import '../style/Menu.css'
 import ModalWindow from "./ModalWindow";
+import { useNavigate } from "react-router-dom";
 
-function Menu() {
-    const [modalActive, setModalActive] = useState('true')
+const  Menu = () => {
+    const [modalActive, setModalActive] = useState(false);
     return(
         <div className="Menu">
-            <h1 style={{
-            textAlign:"center",
-            color: 'white',
-            fontSize: '55px'
-            }}>
-            Откровения умов
+          <h1 className="name_app">
+            ОТКРОВЕНИЯ УМОВ
           </h1>
           <div className="btn_main">
             <button className="btn" onClick={() => setModalActive(true)}>Узнать новые цитаты</button>
             <button className="btn">Пройти тест на знание цитат</button>
           </div>
           <ModalWindow active={modalActive} setActive={setModalActive}>
+            <h2>Выберите категорию цитат:</h2>
             <button className="btnInModal" id="btnInModal1">Человек</button>
             <button className="btnInModal" id="btnInModal2">Жизнь</button>
             <button className="btnInModal" id="btnInModal3">Война</button>
