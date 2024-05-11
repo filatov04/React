@@ -2,12 +2,13 @@ import React from "react";
 import './style/style.css';
 import Menu from "./Components/Menu";
 import DifferentQuotes from "./Components/DifferentQuotes";
+import Game from "./Components/Game";
 
 
 
 function App() {
   return (
-    <DifferentQuotes genreQuotes={"motivation"}/>
+    <Game/>
   );
 }
 

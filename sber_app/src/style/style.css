@@ -2,16 +2,37 @@ html,
 body,
 #root,
 .App {
-  font-family: "SB Sans Text", "Helvetica", "Arial", sans-serif;
-  background: url('../jpg/background.jpg') no-repeat center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   width: 100%;
   height: 100%;
-  align-items: center;
+  background-size: 300% 300%;
+  font-family: "SB Sans Text", "Helvetica", "Arial", sans-serif;
+  background: linear-gradient(-45deg, rgb(0, 0, 0) 0%, rgb(5, 0, 53) 25%, rgb(10, 0, 102) 51%, rgb(16, 0, 160) 100%) no-repeat center center;
+  -webkit-animation: AnimateBG 15s ease infinite;
+          animation: AnimateBG 15s ease infinite;
   background-attachment: fixed;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+}
+
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
