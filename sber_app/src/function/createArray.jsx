@@ -4,9 +4,11 @@ import data from '../data/quotes';
 export const arrayQuestionsQuotes = () => {
     const genre = "human";
     const arrayWithNumberQuotes = randomlyInitializeArray(0,29).slice(0,10);
+    console.log(arrayWithNumberQuotes);
     var targetArray = new Array(10)
     for(var i = 0; i<10; i++){
         var quotesNumber = randomlyInitializeArray(0,29).slice(0,4)
+        console.log(quotesNumber);
         if(!quotesNumber.includes(arrayWithNumberQuotes[i])){
             var positionValidAuthor = Math.floor(Math.random() * 4);
             quotesNumber[positionValidAuthor] = arrayWithNumberQuotes[i]
@@ -18,11 +20,12 @@ export const arrayQuestionsQuotes = () => {
                          data[genre][quotesNumber[2]] && data[genre][quotesNumber[2]].author,
                          data[genre][quotesNumber[3]] && data[genre][quotesNumber[3]].author
                 ],
-                validAnswers: positionValidAuthor + 1
+                validAnswers: positionValidAuthor + 1,
             }
             targetArray[i] = question
         }
         else{
+            const positionValidAuthor = quotesNumber.indexOf(arrayWithNumberQuotes[i]);
             const question = {
                 Quote: data[genre][arrayWithNumberQuotes[i]].quotes, 
                 Author: [
@@ -31,7 +34,7 @@ export const arrayQuestionsQuotes = () => {
                          data[genre][quotesNumber[2]] && data[genre][quotesNumber[2]].author,
                          data[genre][quotesNumber[3]] && data[genre][quotesNumber[3]].author
                 ],
-                validAnswers: positionValidAuthor + 1
+                validAnswers: positionValidAuthor + 1,
             }
             targetArray[i] = question;
         }

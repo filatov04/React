@@ -31,7 +31,7 @@
 .check_answ{
     padding: 10px 15px;
     font-size: 25px;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
     margin-top: 0px;
     border-radius: 12px;
     border: none;
@@ -43,11 +43,10 @@
 .check_unAnsw{
     padding: 10px 15px;
     font-size: 25px;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
     margin-top: 0px;
     border-radius: 12px;
     border: none;
-    cursor: pointer;
     font-family: Cinzel;
     width: 20%;
 }
@@ -64,6 +63,8 @@
     display: flex;
     justify-content: end;
     margin-top: 0;
-    margin-right: 100px;
     font-size: 20px;
+    justify-content: space-between;
+    margin-left: 2vw;
+    margin-right: 2vw;
 }
