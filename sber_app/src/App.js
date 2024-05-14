@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import './style/style.css';
-import Menu from "./Components/Menu";
-import DifferentQuotes from "./Components/DifferentQuotes";
-import Game from "./Components/Game";
 import { arrayQuestionsQuotes } from "./function/createArray";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./Components/AppRouter";
+import { GenreContext } from "./hook/context";
 
 
 
 function App() {
-  //console.log(arrayQuestionsQuotes());
+  const [genre, setGenre] = useState("human");
   return (
-    <Game/>
+    <GenreContext.Provider value={{
+      genre,
+      setGenre
+    }}>
+      <BrowserRouter>
+      <AppRouter/>
+    </BrowserRouter>
+    </GenreContext.Provider>
   );
 }
 

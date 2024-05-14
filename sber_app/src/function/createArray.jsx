@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import data from '../data/quotes';
 
-export const arrayQuestionsQuotes = () => {
-    const genre = "human";
+
+
+export const ArrayQuestionsQuotes = () => {
+    const genreType = "peace";
+    const genre = genreType;
     const arrayWithNumberQuotes = randomlyInitializeArray(0,29).slice(0,10);
-    console.log(arrayWithNumberQuotes);
     var targetArray = new Array(10)
     for(var i = 0; i<10; i++){
         var quotesNumber = randomlyInitializeArray(0,29).slice(0,4)

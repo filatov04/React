@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import '../style/DifferentQuotes.css';
 import data from '../data/quotes';
 import Quote from './Quote';
+import { GenreContext } from '../hook/context';
 
-const DifferentQuotes = ({genreQuotes}) => {
-  const dataGenreQuotes = data[genreQuotes];
+const DifferentQuotes = () => { 
+  const {genre} = useContext(GenreContext);
+  const dataGenreQuotes = data[genre];
 
   return (
     <div className="different_quotes">
       <h1 className='name_quotes'>
-        {genreQuotes}
+        {genre}
       </h1>
       <div className='all_quotes'>
         {dataGenreQuotes.map(option =>

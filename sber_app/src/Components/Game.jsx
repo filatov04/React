@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import data from '../data/quotes';
 import '../function/createArray';
-import { arrayQuestionsQuotes } from '../function/createArray';
+import { ArrayQuestionsQuotes } from '../function/createArray';
 import '../style/Game.css';
 import ButtonNextQuest from './ButtonNextQuest';
 import ButtonMenu from './ButtonMenu';
+import { useNavigate } from 'react-router-dom';
+
 
 const Game = () => {
     //rgb(255,36,0)- неверный ответ  rgb(0, 238, 4) - верный ответ
@@ -15,6 +17,7 @@ const Game = () => {
     const [offGameButton, setOffGameButton] = useState(false);
     const [BtnMenuState, setBtnMenuState] = useState(false);
     const [correctAnswers, setCorrectAnswers] = useState(0);
+    const router = useNavigate();
 
     function isLengthZero(){
         if(arrayQuestions.length === 0){
@@ -35,7 +38,7 @@ const Game = () => {
     }
     
     useEffect(() =>{
-        setArrayQuestions(arrayQuestionsQuotes());
+        setArrayQuestions(ArrayQuestionsQuotes());
     }, [])
 
     const checkAnsw = (number) => {
@@ -57,10 +60,11 @@ const Game = () => {
             }
         })
         setBtnColor(afterClick);
-        setOffGameButton(true)
+        setOffGameButton(true);
     }
 
     const handleClickBtnMenu = (e) => {
+        router('/menu');
         setBtnMenuState(false);
         console.log("пока");
     }
@@ -73,10 +77,10 @@ const Game = () => {
            return {...o, background: "white", color: "black"};
         })
         setBtnColor(afterClick);
-        setOffGameButton(false)
+        setOffGameButton(false);
+        setBtnMenuState(false);
     }
 
-    console.log(arrayQuestions);
     return (
         <div className='game_menu'>
             <h1 style={{color: 'white',
