@@ -5,11 +5,10 @@ import Quote from './Quote';
 import { GenreContext } from '../hook/context';
 import { useNavigate } from 'react-router-dom';
 
-const DifferentQuotes = ({returnMenuState, setReturnMenuState}) => { 
+const DifferentQuotes = ({scale, setScale, returnMenuState, setReturnMenuState}) => { 
   const {genre} = useContext(GenreContext);
   const dataGenreQuotes = data[genre];
   const router = useNavigate();
-  //const [state, setState] = useState(false);
 
   useEffect(() => {
     if(returnMenuState){
@@ -26,8 +25,8 @@ const DifferentQuotes = ({returnMenuState, setReturnMenuState}) => {
           {genre}
         </h1>
         <div className='all_quotes'>
-          {dataGenreQuotes.map(option =>
-            <Quote key={option.id + 1} number={option.id + 1} quote={option.quotes} author={option.author}/>
+          {dataGenreQuotes.map((option, index) =>
+            <Quote scaleStatus={scale[index].status} setScale={setScale} key={option.id + 1} number={option.id + 1} quote={option.quotes} author={option.author}/>
           )}
         </div>
       </div>

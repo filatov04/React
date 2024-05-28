@@ -19,6 +19,8 @@ function App() {
   const [stateModalQuiz, setStateModalQuiz] = useState(false);
   const [answ, setAnsw] = useState(null);
   const [next, setNext] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [scale, setScale] = useState(Array(30).fill({status: false, id: null}));
 
   const initialize = (getState) => {
     if(process.env.NODE_ENV === 'development'){
@@ -99,10 +101,40 @@ function App() {
           return checkAnsw(action);
         case 'Next':
           return NextQuest(action);
+        case 'MenuAfterGame':
+          return MenuAfterGame(action);
+        case 'ScaleQuote':
+          return ScaleQuote(action);
+        case 'CloseModalQuote':
+          return closeModalQuote();
         default:
           throw new Error();
       }
     }
+  }
+
+  function closeModalQuote(){
+    const afterPhrase = scale.map((o, index) => {
+      return {...o, status: false, id: index}
+    })
+    setScale(afterPhrase);
+  }
+
+  function ScaleQuote(action){
+    const id = parseInt(action.id, 10);
+    const afterPhrase = scale.map((o, index) => {
+      if(id - 1 === index){
+        return {...o, status: true, id: index}
+      }
+      else{
+        return {...o, status: false, id: index}
+      }
+    })
+    setScale(afterPhrase);
+  }
+
+  function MenuAfterGame(action){
+    setMenu(true);
   }
 
   function NextQuest(action){
@@ -180,8 +212,8 @@ function App() {
     }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/game" element={<Game next={next} setNext={setNext} setAnsw={setAnsw} answ={answ}/>}/>
-          <Route path="/quotes" element={<DifferentQuotes setReturnMenuState={setMenuState} returnMenuState={menuState}/>}/>
+          <Route path="/game" element={<Game menu={menu} setMenu={setMenu} next={next} setNext={setNext} setAnsw={setAnsw} answ={answ}/>}/>
+          <Route path="/quotes" element={<DifferentQuotes scale={scale} setScale={setScale} setReturnMenuState={setMenuState} returnMenuState={menuState}/>}/>
           <Route path="/" element={<Menu modalQuiz={stateModalQuiz} setModalQuiz={setStateModalQuiz} state={modalState} setState={setModalState} setAssistantGenre={setAssistantGenre} AssistantGenre={assistantGenre}/>}/>
         </Routes> 
       </BrowserRouter>

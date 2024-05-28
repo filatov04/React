@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { GenreContext } from '../hook/context';
 
 
-const Game = ({answ, setAnsw, next, setNext}) => {
+const Game = ({menu, setMenu, answ, setAnsw, next, setNext}) => {
     //rgb(255,36,0)- неверный ответ  rgb(0, 238, 4) - верный ответ
     const [currentQuestions, setCurrentQuestions] = useState(0);
     const [arrayQuestions, setArrayQuestions] = useState([]);
@@ -26,6 +26,14 @@ const Game = ({answ, setAnsw, next, setNext}) => {
             setAnsw(null);
         }
     }, [answ])
+
+    useEffect(() => {
+        if(menu && BtnMenuState){
+            router('/');
+            setMenu(false);
+            setBtnMenuState(false);
+        }
+    }, [menu])
 
     useEffect(() => {
         if(next && btnState){
