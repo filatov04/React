@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import data from '../data/quotes';
 
 
-
-export const ArrayQuestionsQuotes = () => {
-    const genreType = "peace";
+export const ArrayQuestionsQuotes = (genreType) => { 
     const genre = genreType;
     const arrayWithNumberQuotes = randomlyInitializeArray(0,29).slice(0,10);
     var targetArray = new Array(10)

@@ -16,3 +16,16 @@
     font-size: 5vh;
     font-family: Cinzel;
 }
+
+.menu{
+    margin-left: 1vw;
+    margin-top: 2vh;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: 1px solid;
+    color: white;
+    border-radius: 12px;
+    background-color: rgb(0, 0, 0, 0);
+    font-size: 18px;
+    font-weight: 500;
+}

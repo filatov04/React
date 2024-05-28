@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import data from '../data/quotes';
 import '../function/createArray';
 import { ArrayQuestionsQuotes } from '../function/createArray';
 import '../style/Game.css';
 import ButtonNextQuest from './ButtonNextQuest';
 import ButtonMenu from './ButtonMenu';
 import { useNavigate } from 'react-router-dom';
+import { GenreContext } from '../hook/context';
 
 
-const Game = () => {
+const Game = ({answ, setAnsw, next, setNext}) => {
     //rgb(255,36,0)- неверный ответ  rgb(0, 238, 4) - верный ответ
     const [currentQuestions, setCurrentQuestions] = useState(0);
     const [arrayQuestions, setArrayQuestions] = useState([]);
@@ -18,6 +18,28 @@ const Game = () => {
     const [BtnMenuState, setBtnMenuState] = useState(false);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const router = useNavigate();
+    const {genre} = useContext(GenreContext);
+
+    useEffect(() => {
+        if(answ !== null){
+            checkAnsw(answ - 1);
+            setAnsw(null);
+        }
+    }, [answ])
+
+    useEffect(() => {
+        if(next && btnState){
+            setCurrentQuestions(currentQuestions + 1)
+            setBtnState(false);
+            const afterClick = btn.map((o) => {
+               return {...o, background: "white", color: "black"};
+            })
+            setBtnColor(afterClick);
+            setOffGameButton(false);
+            setBtnMenuState(false);
+        }
+        setNext(false);
+    }, [next])
 
     function isLengthZero(){
         if(arrayQuestions.length === 0){
@@ -38,7 +60,7 @@ const Game = () => {
     }
     
     useEffect(() =>{
-        setArrayQuestions(ArrayQuestionsQuotes());
+        setArrayQuestions(ArrayQuestionsQuotes(genre));
     }, [])
 
     const checkAnsw = (number) => {
@@ -64,9 +86,8 @@ const Game = () => {
     }
 
     const handleClickBtnMenu = (e) => {
-        router('/menu');
+        router("/");
         setBtnMenuState(false);
-        console.log("пока");
     }
 
     const handleClick = (e) => {
