@@ -1,10 +1,17 @@
 .game_menu{
-    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: space-around;
-    width: 100%;
 }
 
 .game_button{
@@ -12,14 +19,14 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 4vh;
-    margin-bottom: 8vh;
     height: 55vh;
+    margin-top: 1vh;
+    margin-bottom: 8vh;
 }
 
 .btn_answ{
     padding: 10px 15px;
-    font-size: 25px;
+    font-size: 1.5vw;
     margin-top: 0px;
     border-radius: 12px;
     border: none;
@@ -30,7 +37,7 @@
 
 .check_answ{
     padding: 10px 15px;
-    font-size: 25px;
+    font-size: 1.5vw;
     margin-bottom: 3vh;
     margin-top: 0px;
     border-radius: 12px;
@@ -42,7 +49,7 @@
 
 .check_unAnsw{
     padding: 10px 15px;
-    font-size: 25px;
+    font-size: 1.5vw;
     margin-bottom: 3vh;
     margin-top: 0px;
     border-radius: 12px;
@@ -56,15 +63,4 @@
     align-items: center;
     justify-content: space-around;
     margin: 0;
-}
-
-.count_questions{
-    color: white;
-    display: flex;
-    justify-content: end;
-    margin-top: 0;
-    font-size: 20px;
-    justify-content: space-between;
-    margin-left: 2vw;
-    margin-right: 2vw;
 }

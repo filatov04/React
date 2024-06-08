@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { GenreContext } from '../hook/context';
 
 
-const Game = ({menu, setMenu, answ, setAnsw, next, setNext}) => {
+const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) => {
     //rgb(255,36,0)- неверный ответ  rgb(0, 238, 4) - верный ответ
     const [currentQuestions, setCurrentQuestions] = useState(0);
     const [arrayQuestions, setArrayQuestions] = useState([]);
@@ -28,7 +28,7 @@ const Game = ({menu, setMenu, answ, setAnsw, next, setNext}) => {
     }, [answ])
 
     useEffect(() => {
-        if(menu && BtnMenuState){
+        if(menu){
             router('/');
             setMenu(false);
             setBtnMenuState(false);
@@ -114,32 +114,35 @@ const Game = ({menu, setMenu, answ, setAnsw, next, setNext}) => {
         <div className='game_menu'>
             <h1 style={{color: 'white',
                 fontFamily: 'Cinzel',
+                fontSize: '2vw',
+                lineHeight: '3.5vh',
             }}>
+                Цитата {currentQuestions + 1}/10:<pre></pre>
                {isLengthZero() 
                     ? <div>Привет</div>
                     : arrayQuestions[currentQuestions].Quote
                 }
             </h1>
             <div className='game_button' style={offGameButton ? {pointerEvents: 'none'} : {}}>
-                <button className='btn_answ' style={{background: btn[0].background, color: btn[0].color}} id='btn_answ1' onClick={() => checkAnsw(0)}>
+                <button className='btn_answ' style={{background: btn[0].background, color: btn[0].color}} id='btn_answ1' onClick={() => assistant_global("1", "checkAnsw")}>
                     {isLengthZero() 
                     ? <div></div>
                     : arrayQuestions[currentQuestions].Author[0]
                 }
                 </button>
-                <button className='btn_answ' style={{background: btn[1].background, color: btn[1].color}} id='btn_answ2' onClick={() => checkAnsw(1)}>
+                <button className='btn_answ' style={{background: btn[1].background, color: btn[1].color}} id='btn_answ2' onClick={() => assistant_global("2", "checkAnsw")}>
                     {isLengthZero() 
                     ? <div></div>
                     : arrayQuestions[currentQuestions].Author[1]
                 }
                 </button>
-                <button className='btn_answ' style={{background: btn[2].background, color: btn[2].color}} id='btn_answ3' onClick={() => checkAnsw(2)}>
+                <button className='btn_answ' style={{background: btn[2].background, color: btn[2].color}} id='btn_answ3' onClick={() => assistant_global("3", "checkAnsw")}>
                     {isLengthZero() 
                     ? <div></div>
                     : arrayQuestions[currentQuestions].Author[2]
                 }
                 </button>
-                <button className='btn_answ' style={{background: btn[3].background, color: btn[3].color}} id='btn_answ4' onClick={() => checkAnsw(3)}>
+                <button className='btn_answ' style={{background: btn[3].background, color: btn[3].color}} id='btn_answ4' onClick={() => assistant_global("4", "checkAnsw")}>
                     {isLengthZero() 
                     ? <div></div>
                     : arrayQuestions[currentQuestions].Author[3]
@@ -147,13 +150,9 @@ const Game = ({menu, setMenu, answ, setAnsw, next, setNext}) => {
                 </button>
             </div>
             {isLastQuestions()
-                ? <ButtonMenu state_btnMenu = {BtnMenuState} handleClick={handleClickBtnMenu}/>
-                : <ButtonNextQuest state_btn = {btnState} handleClick={handleClick}/>
+                ? <ButtonMenu state_btnMenu = {BtnMenuState} handleClick={assistant_global}/>
+                : <ButtonNextQuest state_btn = {btnState} handleClick={assistant_global}/>
             }
-            <div className='count_questions'>
-                <p>Вопрос {currentQuestions + 1}/10</p>
-                <p>Правильных ответов: {correctAnswers}</p>
-            </div>
         </div>
     )
 }

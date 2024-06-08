@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../style/Menu.css'
 
-const ModalWindow = ({active, setModalState, setActive, children}) => {
-
-    const [array, setArray] = useState(Array(30).fill({status: false, id: null}))
-
+const ModalWindow = ({assistant_global, active, setModalState, setActive, children}) => {
+    
     const setState = () => {
         if(Object.keys(setModalState).length === 2){
             console.log('2')
             //setModalState.setScale(array);
+            assistant_global(null, "closeQuoteModal");
         }
         else{
             console.log('1')
-            setModalState(false);
+            //setModalState(false);
+            assistant_global(null, "closeModalForLearn");
         }
     }
 

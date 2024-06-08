@@ -19,8 +19,8 @@
 .quotes{
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 15px;
+    font-size: 1.8vw;
+    line-height: 4vh;
     color: #333333;
     padding-left: 10px;
 }
@@ -28,8 +28,8 @@
 .author{
     font-style: italic;
     font-weight: normal;
-    font-size: 16px;
-    line-height: 15px;
+    font-size: 2.2vw;
+    line-height: 3vh;
     color: #aaaaaa;
     padding-left: 10px;
 }
@@ -44,8 +44,21 @@
     cursor: pointer;
 }
 
+.closeButton{
+    padding:0;
+    border: none;
+    border-radius: 0px;
+    background-color: white;
+    cursor: pointer;
+    align-items: center;
+}
+
+.closeButtonImage{
+    width: 2vw;
+}
+
 .lupa_image{
-    width: 30px;
+    width: 2.5vw;
 }
 
 .quoteInScale{
@@ -60,8 +73,8 @@
 .quotesInScale{
     font-style: normal;
     font-weight: normal;
-    font-size: 2vh;
-    line-height: 2vh;
+    font-size: 2.8vw;
+    line-height: 3.5vw;
     color: #333333;
     padding-left: 1vw;
 }
@@ -69,8 +82,8 @@
 .authorInScale{
     font-style: italic;
     font-weight: normal;
-    font-size: 2vh;
-    line-height: 15px;
+    font-size: 3.2vw;
+    line-height: 4.5vw;
     color: #aaaaaa;
     padding-left: 1vw;
     margin: 1em 0;

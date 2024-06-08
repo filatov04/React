@@ -1,6 +1,13 @@
 .Menu {
     width: 100%;
     height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +15,7 @@
 }
 
 .name_app{
-    font-size: 60px;
+    font-size: 5vw;
     color: white;
 }
 
@@ -18,12 +25,25 @@
     justify-content: space-around;
 }
 
+.closeButton{
+    padding:0;
+    border: none;
+    border-radius: 0px;
+    background-color: white;
+    cursor: pointer;
+    align-items: center;
+}
+
+.closeButtonIImage{
+    width: 3vw;
+}
+
 
 .btn{
     background-color: rgba(0,0,0,0);
     color: white;
     padding: 10px 15px;
-    font-size: 25px;
+    font-size: 1.5vw;
     border-style: solid;
     border-radius: 7px;
     border-color: white;
@@ -62,8 +82,8 @@
     flex-direction: column;
     padding: 20px;
     border-radius: 12px;
-    width: 40vw;
-    height: 50vh;
+    width: 60vw;
+    height: 70vh;
     background-color: white;
     transform: scale(0.5);
     transition: 0.4s all;
@@ -77,31 +97,32 @@
 }
 
 .btnInModal{
-    font-size: 25px;
-    width: 18vw;
-    height: 8vh;
+    font-size: 1.9vw;
+    width: 20vw;
+    height: 9vh;
     color: white;
     border-radius: 12px;
     border: none;
     cursor: pointer;
+    background-size: cover;
 }
 
 #btnInModal1{
+    background-position: center;
     background-image: url("../jpg/i.webp");
-    background-size: cover;
 }
 
 #btnInModal2{
+    background-position: center;
     background-image: url("../jpg/ff86f6103065705.5f46215bc5c82.jpg");
-    background-size: cover;
 }
 
 #btnInModal3{
+    background-position: center;
     background-image: url("../jpg/118265.jpg");
-    background-size: cover;
 }
 
 #btnInModal4{
     background-image: url("../jpg/AdobeStock_124230251.png");
-    background-size: cover;
+    background-position: 50% 30%;
 }

@@ -1,22 +1,83 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import '../style/Menu.css'
 import ModalWindow from "./ModalWindow";
 import { useNavigate } from "react-router-dom";
 import { GenreContext } from "../hook/context";
+import closeButtonImage from "../jpg/closeButton2.png";
+import {getCurrentFocusedElement, useSection } from "@salutejs/spatial";
 
-const  Menu = ({state, setState, AssistantGenre, setAssistantGenre, modalQuiz, setModalQuiz}) => {
+const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantGenre, modalQuiz, setModalQuiz}) => {
     const router = useNavigate();
     const [modalActive1, setModalActive1] = useState(false);
     const [modalActive2, setModalActive2] = useState(false);
     const {genre, setGenre} = useContext(GenreContext);
-    //console.log(genre)
+
+
+    const [sectionProps, customize1] = useSection('allInteface');
+    const [sectionProps2, customize2] = useSection('btnForQuote');
+    const [sectionProps3, customize3] = useSection('btnMenu');
+    const [sectionProps4, customize4] = useSection('btnForQuiz');
+
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        const focusedElement = getCurrentFocusedElement();
+        console.log("Focused element:", focusedElement);
+      }, 5000); // 5000 миллисекунд = 5 секунд
+
+      // Очистка интервала при размонтировании компонента
+      return () => clearInterval(intervalId);
+    }, []);
 
     useEffect(() => {
       setModalActive1(state);
+      if(state){
+        customize3({
+          disabled:true,
+        })
+        customize2({
+          disabled:false,
+        })
+        customize4({
+          disabled:false,
+        })
+      }
+      else{
+        customize2({
+          disabled:true,
+        })
+        customize4({
+          disabled:true,
+        })
+        customize3({
+          disabled:false,
+        })
+      }
     }, [state])
 
     useEffect(() => {
       setModalActive2(modalQuiz);
+      if(modalQuiz){
+        customize3({
+          disabled:true,
+        })
+        customize2({
+          disabled:false,
+        })
+        customize4({
+          disabled:false,
+        })
+      }
+      else{
+        customize2({
+          disabled:true,
+        })
+        customize4({
+          disabled:true,
+        })
+        customize3({
+          disabled:false,
+        })
+      }
     }, [modalQuiz])
 
     useEffect(() =>{
@@ -26,49 +87,51 @@ const  Menu = ({state, setState, AssistantGenre, setAssistantGenre, modalQuiz, s
           router('/game');
           setAssistantGenre("");
           setModalQuiz(false);
+          assistant_global(null, "suggestQuiz");
         }
         if(state){
           router('/quotes')
           setAssistantGenre("");
           setState(false);
+          assistant_global(null, "suggestQuote");
         }
       }
     }, [AssistantGenre]);
 
-    const HandleClick = (e) => {
-      setGenre(e);
-      router('/quotes');
-    }
-
-    const HandleClickQuiz = (e) => {
-      setGenre(e);
-      router('/game');
-    }
-
     return(
-      <div className="Menu">
-          <h1 className="name_app">
-            ОТКРОВЕНИЕ УМОВ
-          </h1>
-          <div className="btn_main">
-            <button className="btn" onClick={() => setModalActive1(true)}>Узнать новые цитаты</button>
-            <button className="btn" onClick={() => setModalActive2(true)}>Пройти тест на знание цитат</button>
+      <div {...sectionProps} className="sn-section-root Menu">
+        <h1 className="name_app">
+          ОТКРОВЕНИЕ УМОВ
+        </h1>
+        <div {...sectionProps3} className="btn_main">
+          <button className="sn-section-item btn" id="1" tabIndex={-1}  onClick={() => assistant_global(null, "learnQuotes")}>Узнать новые цитаты</button>
+          <button className="sn-section-item btn" id="2" tabIndex={-1}  onClick={() => assistant_global(null, "attemptToQuiz")}>Пройти тест на знание цитат</button>
+        </div>
+        <ModalWindow assistant_global={assistant_global} active={modalActive1} setActive={setModalActive1} setModalState={setState}>
+          <div {...sectionProps2} style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'}}>
+            <h2 style={{fontSize: '2.5vw'}}>Выберите тему цитат:</h2>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("1", "chooseTheme")}>Человек</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("2", "chooseTheme")}>Жизнь</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("3", "chooseTheme")}>Война</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("4", "chooseTheme")}>Мотивация</button>
+            <button className="sn-section-item closeButton" tabIndex={-1} onClick={() => assistant_global(null, "closeModalForLearn")}>
+              <img className="closeButtonIImage" src={closeButtonImage}/>
+            </button>
           </div>
-          <ModalWindow active={modalActive1} setActive={setModalActive1} setModalState={setState}>
-            <h2>Выберите тему цитат:</h2>
-            <button className="btnInModal" id="btnInModal1" onClick={() => HandleClick("human")}>Человек</button>
-            <button className="btnInModal" id="btnInModal2" onClick={() => HandleClick("peace")}>Жизнь</button>
-            <button className="btnInModal" id="btnInModal3" onClick={() => HandleClick("war")}>Война</button>
-            <button className="btnInModal" id="btnInModal4" onClick={() => HandleClick("motivation")}>Мотивация</button>
-          </ModalWindow>
-          <ModalWindow active={modalActive2} setActive={setModalActive2} setModalState={setModalQuiz}>
-            <h2>Выберите категорию цитат, по которой желаете пройти тестирование:</h2>
-            <button className="btnInModal" id="btnInModal1" onClick={() => HandleClickQuiz("human")}>Человек</button>
-            <button className="btnInModal" id="btnInModal2" onClick={() => HandleClickQuiz("peace")}>Жизнь</button>
-            <button className="btnInModal" id="btnInModal3" onClick={() => HandleClickQuiz("war")}>Война</button>
-            <button className="btnInModal" id="btnInModal4" onClick={() => HandleClickQuiz("motivation")}>Мотивация</button>  
-          </ModalWindow>
-      </div>   
+        </ModalWindow>
+        <ModalWindow assistant_global={assistant_global} active={modalActive2} setActive={setModalActive2} setModalState={setModalQuiz}>
+          <div {...sectionProps4} style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'}}>
+            <h2 style={{fontSize: '2.5vw'}}>Выберите категорию цитат, по которой желаете пройти тестирование:</h2>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("1", "chooseTheme")}>Человек</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("2", "chooseTheme")}>Жизнь</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("3", "chooseTheme")}>Война</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("4", "chooseTheme")}>Мотивация</button>
+            <button className="sn-section-item closeButton" tabIndex={-1} onClick={() => assistant_global(null, "closeModalForLearn")}>
+              <img className="closeButtonIImage" src={closeButtonImage}/>
+            </button>
+          </div>  
+        </ModalWindow>
+      </div>
     )
 }
 

@@ -5,7 +5,7 @@ import Quote from './Quote';
 import { GenreContext } from '../hook/context';
 import { useNavigate } from 'react-router-dom';
 
-const DifferentQuotes = ({scale, setScale, returnMenuState, setReturnMenuState}) => { 
+const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, setReturnMenuState}) => { 
   const {genre} = useContext(GenreContext);
   const dataGenreQuotes = data[genre];
   const router = useNavigate();
@@ -18,15 +18,15 @@ const DifferentQuotes = ({scale, setScale, returnMenuState, setReturnMenuState})
   }, [returnMenuState]);
 
   return (
-    <div>
-      <button onClick={() => router('/')} className='menu'>Главное меню</button>
+    <div className='page_quotes'>
+      <button onClick={() => assistant_global(null, "returnMenu")} className='menu'>Главное меню</button>
       <div className="different_quotes">
         <h1 className='name_quotes'>
           {genre}
         </h1>
         <div className='all_quotes'>
           {dataGenreQuotes.map((option, index) =>
-            <Quote scaleStatus={scale[index].status} setScale={setScale} key={option.id + 1} number={option.id + 1} quote={option.quotes} author={option.author}/>
+            <Quote assistant_global={assistant_global} scaleStatus={scale[index].status} setScale={setScale} key={option.id + 1} number={option.id + 1} quote={option.quotes} author={option.author}/>
           )}
         </div>
       </div>

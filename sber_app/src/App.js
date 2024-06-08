@@ -6,9 +6,7 @@ import { createAssistant, createSmartappDebugger } from "@salutejs/client";
 import Game from "./Components/Game";
 import DifferentQuotes from "./Components/DifferentQuotes";
 import Menu from "./Components/Menu";
-
-
-
+import { useSpatnavInitialization } from "@salutejs/spatial";
 
 function App() {
   const [character, setCharacter] = useState('sber');
@@ -22,6 +20,9 @@ function App() {
   const [menu, setMenu] = useState(false);
   const [scale, setScale] = useState(Array(30).fill({status: false, id: null}));
 
+  useSpatnavInitialization();
+  
+
   const initialize = (getState) => {
     if(process.env.NODE_ENV === 'development'){
       return createSmartappDebugger({
@@ -34,6 +35,7 @@ function App() {
       return createAssistant({getState});
     }
   }
+
 
   const assistantStateRef = useRef();
   const assistantRef = useRef();
@@ -196,13 +198,20 @@ function App() {
   }
 
   function closeModalWindow(action){
-    if(action.note.includes("квиза")){
-      setStateModalQuiz(false);
-    }
-    else{
-      setModalState(false);
-    }
-    // setModalState(false);
+    setModalState(false);
+    setStateModalQuiz(false);    
+  }
+
+  function assistant_global(n, state) {
+    console.log(n, state)
+    assistantRef.current.sendData({
+      action: {
+        action_id: state,
+        parameters: {
+          number: n
+        }
+      }
+    })
   }
 
   return (
@@ -212,9 +221,9 @@ function App() {
     }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/game" element={<Game menu={menu} setMenu={setMenu} next={next} setNext={setNext} setAnsw={setAnsw} answ={answ}/>}/>
-          <Route path="/quotes" element={<DifferentQuotes scale={scale} setScale={setScale} setReturnMenuState={setMenuState} returnMenuState={menuState}/>}/>
-          <Route path="/" element={<Menu modalQuiz={stateModalQuiz} setModalQuiz={setStateModalQuiz} state={modalState} setState={setModalState} setAssistantGenre={setAssistantGenre} AssistantGenre={assistantGenre}/>}/>
+          <Route path="/game" element={<Game assistant_global={assistant_global} menu={menu} setMenu={setMenu} next={next} setNext={setNext} setAnsw={setAnsw} answ={answ}/>}/>
+          <Route path="/quotes" element={<DifferentQuotes assistant_global={assistant_global} scale={scale} setScale={setScale} setReturnMenuState={setMenuState} returnMenuState={menuState}/>}/>
+          <Route path="/" element={<Menu assistant_global={assistant_global} modalQuiz={stateModalQuiz} setModalQuiz={setStateModalQuiz} state={modalState} setState={setModalState} setAssistantGenre={setAssistantGenre} AssistantGenre={assistantGenre}/>}/>
         </Routes> 
       </BrowserRouter>
     </GenreContext.Provider>
