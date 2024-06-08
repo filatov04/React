@@ -4,7 +4,7 @@ import ModalWindow from "./ModalWindow";
 import { useNavigate } from "react-router-dom";
 import { GenreContext } from "../hook/context";
 import closeButtonImage from "../jpg/closeButton2.png";
-import {getCurrentFocusedElement, useSection } from "@salutejs/spatial";
+import {getCurrentFocusedElement, spatnavInstance, useSection } from "@salutejs/spatial";
 
 const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantGenre, modalQuiz, setModalQuiz}) => {
     const router = useNavigate();
@@ -40,6 +40,7 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
         customize4({
           disabled:false,
         })
+        spatnavInstance.focus('btnForQuote');
       }
       else{
         customize2({
@@ -51,6 +52,7 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
         customize3({
           disabled:false,
         })
+        spatnavInstance.focus('btnMenu');
       }
     }, [state])
 
@@ -66,6 +68,7 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
         customize4({
           disabled:false,
         })
+        spatnavInstance.focus('btnForQuiz');
       }
       else{
         customize2({
@@ -77,6 +80,7 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
         customize3({
           disabled:false,
         })
+        spatnavInstance.focus('btnMenu');
       }
     }, [modalQuiz])
 
