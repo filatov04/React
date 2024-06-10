@@ -31,25 +31,25 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
     useEffect(() => {
       setModalActive1(state);
       if(state){
-        customize3({
+        customize3({ //btnMenu
           disabled:true,
         })
-        customize2({
+        customize2({ //btnForQuote
           disabled:false,
         })
-        customize4({
-          disabled:false,
+        customize4({ //btnForQuiz
+          disabled:true,
         })
         spatnavInstance.focus('btnForQuote');
       }
       else{
-        customize2({
+        customize2({ //btnForQuote
+          disabled:true, 
+        })
+        customize4({ //btnForQuiz
           disabled:true,
         })
-        customize4({
-          disabled:true,
-        })
-        customize3({
+        customize3({ //btnMenu
           disabled:false,
         })
         spatnavInstance.focus('btnMenu');
@@ -59,25 +59,25 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
     useEffect(() => {
       setModalActive2(modalQuiz);
       if(modalQuiz){
-        customize3({
+        customize3({ //btnMenu
           disabled:true,
         })
-        customize2({
-          disabled:false,
+        customize2({ //btnForQuote
+          disabled:true,
         })
-        customize4({
+        customize4({ //btnForQuiz
           disabled:false,
         })
         spatnavInstance.focus('btnForQuiz');
       }
       else{
-        customize2({
+        customize2({ //btnForQuote
           disabled:true,
         })
-        customize4({
+        customize4({ //btnForQuiz
           disabled:true,
         })
-        customize3({
+        customize3({ //btnMenu
           disabled:false,
         })
         spatnavInstance.focus('btnMenu');

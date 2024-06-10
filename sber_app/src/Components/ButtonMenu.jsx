@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../style/Game.css';
+import { spatnavInstance, useSection } from '@salutejs/spatial';
 
 
 const ButtonMenu = (props) => {
+  const [btnMenuSection, customizeBtnMenu] = useSection('btnMenu');
+  
+  useEffect(() =>{
+    if(props.state_btnMenu){
+      spatnavInstance.focus('btnMenu');
+    }
+  },[props.state_btnMenu])
+
   return (
-    <div className='btn_nextQuest'>
+    <div {...btnMenuSection} className='sn-section-root btn_nextQuest'>
         {props.state_btnMenu
-        ? <button className='check_answ' onClick={() => props.handleClick(null, "returnMenuAfterGame")}>Вернуться в главное меню</button>
+        ? <button className='sn-section-item check_answ' tabIndex={-1} onClick={() => props.handleClick(null, "returnMenuAfterGame")}>Вернуться в главное меню</button>
         : <button className='check_unAnsw' disabled>Вернуться в главное меню</button>
     }
     </div>
