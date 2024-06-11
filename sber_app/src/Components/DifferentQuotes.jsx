@@ -42,16 +42,25 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
 
   useEffect(()=>{
     const handleKeyDown = ((event) => {
+      const focusedReturnMenu = getCurrentFocusedElement()
       switch (event.code) {
         case 'ArrowDown':
-          event.preventDefault();
-          console.log('hello down')
-          window.scrollBy(0, 75);         
-          break;
+          if(focusedReturnMenu.id !== '1'){
+            event.preventDefault();
+            console.log('hello down')
+            window.scrollBy({
+              top: 500,
+              behavior: 'smooth'
+            });         
+            break;
+          }
         case 'ArrowUp':
           event.preventDefault();
           console.log('hello up');
-          window.scrollBy(0, -75)
+          window.scrollBy({
+            top: -500,
+            behavior: 'smooth'
+          });
           break;
       }
     });

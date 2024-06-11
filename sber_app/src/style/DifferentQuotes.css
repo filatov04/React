@@ -9,7 +9,10 @@
     -o-background-size: cover;
     background-size: cover;
     position: absolute;
-    overflow: scroll;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .different_quotes{
