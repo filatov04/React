@@ -7,6 +7,7 @@ import ButtonMenu from './ButtonMenu';
 import { useNavigate } from 'react-router-dom';
 import { GenreContext } from '../hook/context';
 import { spatnavInstance, useSection } from '@salutejs/spatial';
+import { black } from '@salutejs/plasma-tokens';
 
 
 const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) => {
@@ -126,7 +127,7 @@ const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) =
         <div {...allButtonSection} className='game_menu'>
             <h1 style={{color: 'white',
                 fontFamily: 'Cinzel',
-                fontSize: '2vw',
+                fontSize: '2.2vw',
                 lineHeight: '3.5vh',
             }}>
                 Цитата {currentQuestions + 1}/10:<pre></pre>

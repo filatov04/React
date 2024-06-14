@@ -15,8 +15,8 @@ const ButtonMenu = (props) => {
   return (
     <div {...btnMenuSection} className='sn-section-root btn_nextQuest'>
         {props.state_btnMenu
-        ? <button className='sn-section-item check_answ' tabIndex={-1} onClick={() => props.handleClick(null, "returnMenuAfterGame")}>Вернуться в главное меню</button>
-        : <button className='check_unAnsw' disabled>Вернуться в главное меню</button>
+        ? <button className='sn-section-item check_answ' tabIndex={-1} onClick={() => props.handleClick(null, "returnMenuAfterGame")}>Главное меню</button>
+        : <button className='check_unAnsw' disabled>Главное меню</button>
     }
     </div>
   )

@@ -6,7 +6,7 @@ import ModalWindow from './ModalWindow';
 import closeButtonImage from '../jpg/closeButton2.png'
 import { spatnavInstance, useSection } from '@salutejs/spatial';
 
-const Quote = ({assistant_global, scaleStatus, setScale, number, quote, author}) => {
+const Quote = ({reference, assistant_global, scaleStatus, setScale, number, quote, author}) => {
 
     //const [AllSection, customize] = useSection('AllSection');
     const [lupaFocus, customizeLupa] = useSection(`lupaSection${number}`);
@@ -40,7 +40,7 @@ const Quote = ({assistant_global, scaleStatus, setScale, number, quote, author})
             <p className='quotes'>{number}. {quote}</p>
             <cite className='author'>{author}</cite>
         </blockquote>
-        <div {...lupaFocus}><button id={number} className='sn-section-item lupa' tabIndex={-1} onClick={() => scaleQuote()}>
+        <div {...lupaFocus}><button ref={reference} id={number} className='sn-section-item lupa' tabIndex={-1} onClick={() => scaleQuote()}>
             <img className='lupa_image' src={lupa}/>
         </button></div>
         <ModalWindow assistant_global={assistant_global} active={modalActive} setActive={setModalActive} setModalState={{setScale, scaleStatus}} >

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../style/DifferentQuotes.css';
 import data from '../data/quotes';
 import Quote from './Quote';
@@ -15,6 +15,7 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
   const [menuFocus, customizeMenu] = useSection('PageQuotes');
   const [returnMenu, customizeReturnMenu] = useSection("returnMenu");
   const [allQuote, customizeAllQuote] = useSection('AllQuote');
+  const ref = useRef(null);
 
   useEffect(() => {
     spatnavInstance.focus('returnMenu');
@@ -47,20 +48,14 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
         case 'ArrowDown':
           if(focusedReturnMenu.id !== '1'){
             event.preventDefault();
-            console.log('hello down')
-            window.scrollBy({
-              top: 500,
-              behavior: 'smooth'
-            });         
+            ref.current = focusedReturnMenu;
+            ref.current.scrollIntoView({ behavior: 'smooth',  block: 'center'});       
             break;
           }
         case 'ArrowUp':
           event.preventDefault();
-          console.log('hello up');
-          window.scrollBy({
-            top: -500,
-            behavior: 'smooth'
-          });
+          ref.current = focusedReturnMenu;
+          ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
           break;
       }
     });
@@ -98,7 +93,7 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
         </h1>
         <div {...allQuote} className='all_quotes'>
           {dataGenreQuotes.map((option, index) =>
-            <Quote assistant_global={assistant_global} scaleStatus={scale[index].status} setScale={setScale} key={option.id + 1} number={option.id + 1} quote={option.quotes} author={option.author}/>
+            <Quote reference={ref} assistant_global={assistant_global} scaleStatus={scale[index].status} setScale={setScale} key={option.id + 1} number={option.id + 1} quote={option.quotes} author={option.author}/>
           )}
         </div>
       </div>

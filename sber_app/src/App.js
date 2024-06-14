@@ -175,21 +175,17 @@ function App() {
   }
 
   function chooseTheme(action){
-    switch(action.id){
-      case "1":
-        setAssistantGenre("human");
-        break;
-      case "2":
-        setAssistantGenre("peace");
-        break;
-      case "3":
-        setAssistantGenre("war");
-        break;
-      case "4":
-        setAssistantGenre("motivation");
-        break;
-      default:
-        return console.log("hello");
+    if(action.id === '1' || action.id === 'Человек' || action.id === 'человек'){
+      setAssistantGenre("human");
+    }
+    else if(action.id === '2' || action.id === 'Жизнь' || action.id === 'жизнь'){
+      setAssistantGenre("peace");
+    }
+    else if(action.id === '3' || action.id === 'Война' || action.id === 'война'){
+      setAssistantGenre("war");
+    }
+    else if(action.id === '4' || action.id === 'Мотивация' || action.id === 'мотивация'){
+      setAssistantGenre("motivation");
     }
   }
 
