@@ -114,10 +114,10 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
         <ModalWindow assistant_global={assistant_global} active={modalActive1} setActive={setModalActive1} setModalState={setState}>
           <div {...sectionProps2} style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'}}>
             <h2 style={{fontSize: '2.5vw'}}>Выберите тему цитат:</h2>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("1", "chooseTheme")}>Человек</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("2", "chooseTheme")}>Жизнь</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("3", "chooseTheme")}>Война</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("4", "chooseTheme")}>Мотивация</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("Человек", "chooseTheme")}>Человек</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("Жизнь", "chooseTheme")}>Жизнь</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("Война", "chooseTheme")}>Война</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("Мотивация", "chooseTheme")}>Мотивация</button>
             <button className="sn-section-item closeButton" tabIndex={-1} onClick={() => assistant_global(null, "closeModalForLearn")}>
               <img className="closeButtonIImage" src={closeButtonImage}/>
             </button>
@@ -126,10 +126,10 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
         <ModalWindow assistant_global={assistant_global} active={modalActive2} setActive={setModalActive2} setModalState={setModalQuiz}>
           <div {...sectionProps4} style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'}}>
             <h2 style={{fontSize: '2.5vw'}}>Выберите категорию цитат, по которой желаете пройти тестирование:</h2>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("1", "chooseTheme")}>Человек</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("2", "chooseTheme")}>Жизнь</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("3", "chooseTheme")}>Война</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("4", "chooseTheme")}>Мотивация</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("Человек", "chooseTheme")}>Человек</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("Жизнь", "chooseTheme")}>Жизнь</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("Война", "chooseTheme")}>Война</button>
+            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("Мотивация", "chooseTheme")}>Мотивация</button>
             <button className="sn-section-item closeButton" tabIndex={-1} onClick={() => assistant_global(null, "closeModalForLearn")}>
               <img className="closeButtonIImage" src={closeButtonImage}/>
             </button>

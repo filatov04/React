@@ -90,9 +90,11 @@ const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) =
         const afterClick = btn.map((o, index) => {
             if(index === number && (number + 1) === arrayQuestions[currentQuestions].validAnswers){
                 setCorrectAnswers(correctAnswers + 1);
+                assistant_global(null, "correctAnsw");
                 return {...o, background: "rgb(0, 238, 4)", color: "white"};
             }
             else if(index === number && (number + 1) !== arrayQuestions[currentQuestions].validAnswers){
+                assistant_global(null, "uncorrectAnsw");
                 return {...o, background: "rgb(255,36,0)", color: "white"};
             }
             else if(index === arrayQuestions[currentQuestions].validAnswers - 1){
