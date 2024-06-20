@@ -19,6 +19,7 @@ function App() {
   const [next, setNext] = useState(false);
   const [menu, setMenu] = useState(false);
   const [scale, setScale] = useState(Array(30).fill({status: false, id: null}));
+  const [modalRes, setModalRes] = useState(false);
 
   useSpatnavInitialization();
   
@@ -109,10 +110,16 @@ function App() {
           return ScaleQuote(action);
         case 'CloseModalQuote':
           return closeModalQuote();
+        case 'showRes':
+          return showRes();
         default:
           throw new Error();
       }
     }
+  }
+
+  function showRes(){
+    setModalRes(true);
   }
 
   function closeModalQuote(){
@@ -176,15 +183,24 @@ function App() {
 
   function chooseTheme(action){
     if(action.id === '1' || action.id === 'Человек' || action.id === 'человек'){
+      const res = scale.map((o, index) => {
+          return {...o, status: false, id: index};
+      });
+      setScale(res);
       setAssistantGenre("human");
     }
     else if(action.id === '2' || action.id === 'Жизнь' || action.id === 'жизнь'){
+      const res = scale.map((o, index) => {
+          return {...o, status: false, id: index};
+      });
+      setScale(res);
       setAssistantGenre("peace");
     }
-    else if(action.id === '3' || action.id === 'Война' || action.id === 'война'){
-      setAssistantGenre("war");
-    }
-    else if(action.id === '4' || action.id === 'Мотивация' || action.id === 'мотивация'){
+    else if(action.id === '3' || action.id === 'Мотивация' || action.id === 'мотивация'){
+      const res = scale.map((o, index) => {
+          return {...o, status: false, id: index};
+      });
+      setScale(res);
       setAssistantGenre("motivation");
     }
   }
@@ -217,7 +233,7 @@ function App() {
     }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/game" element={<Game assistant_global={assistant_global} menu={menu} setMenu={setMenu} next={next} setNext={setNext} setAnsw={setAnsw} answ={answ}/>}/>
+          <Route path="/game" element={<Game res={modalRes} setModalRes={setModalRes} assistant_global={assistant_global} menu={menu} setMenu={setMenu} next={next} setNext={setNext} setAnsw={setAnsw} answ={answ}/>}/>
           <Route path="/quotes" element={<DifferentQuotes assistant_global={assistant_global} scale={scale} setScale={setScale} setReturnMenuState={setMenuState} returnMenuState={menuState}/>}/>
           <Route path="/" element={<Menu assistant_global={assistant_global} modalQuiz={stateModalQuiz} setModalQuiz={setStateModalQuiz} state={modalState} setState={setModalState} setAssistantGenre={setAssistantGenre} AssistantGenre={assistantGenre}/>}/>
         </Routes> 

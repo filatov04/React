@@ -13,7 +13,7 @@ const ButtonNextQuest = (props) => {
   },[props.state_btn]);
 
   return (
-    <div {...buttonNextQuest} className='sn-section-root btn_nextQuest'>
+    <div {...buttonNextQuest} className='btn_nextQuest'>
         {props.state_btn
             ? <button className='sn-section-item check_answ' tabIndex={-1} onClick={() => props.handleClick(null, "nextQuest")}>Следующий вопрос</button>
             : <button className='check_unAnsw' disabled>Следующий вопрос</button>

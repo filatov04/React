@@ -6,6 +6,7 @@ import { GenreContext } from "../hook/context";
 import closeButtonImage from "../jpg/closeButton2.png";
 import {getCurrentFocusedElement, spatnavInstance, useSection } from "@salutejs/spatial";
 
+
 const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantGenre, modalQuiz, setModalQuiz}) => {
     const router = useNavigate();
     const [modalActive1, setModalActive1] = useState(false);
@@ -116,7 +117,6 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
             <h2 style={{fontSize: '2.5vw'}}>Выберите тему цитат:</h2>
             <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("Человек", "chooseTheme")}>Человек</button>
             <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("Жизнь", "chooseTheme")}>Жизнь</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("Война", "chooseTheme")}>Война</button>
             <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("Мотивация", "chooseTheme")}>Мотивация</button>
             <button className="sn-section-item closeButton" tabIndex={-1} onClick={() => assistant_global(null, "closeModalForLearn")}>
               <img className="closeButtonIImage" src={closeButtonImage}/>
@@ -128,7 +128,6 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
             <h2 style={{fontSize: '2.5vw'}}>Выберите категорию цитат, по которой желаете пройти тестирование:</h2>
             <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal1" onClick={() => assistant_global("Человек", "chooseTheme")}>Человек</button>
             <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal2" onClick={() => assistant_global("Жизнь", "chooseTheme")}>Жизнь</button>
-            <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal3" onClick={() => assistant_global("Война", "chooseTheme")}>Война</button>
             <button className="sn-section-item btnInModal" tabIndex={-1} id="btnInModal4" onClick={() => assistant_global("Мотивация", "chooseTheme")}>Мотивация</button>
             <button className="sn-section-item closeButton" tabIndex={-1} onClick={() => assistant_global(null, "closeModalForLearn")}>
               <img className="closeButtonIImage" src={closeButtonImage}/>

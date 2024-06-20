@@ -27,7 +27,7 @@
 .btn_answ{
     padding: 15px 20px;
     font-size: 1.8vw;
-    margin-top: 0px;
+    margin-top: 0;
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -35,10 +35,21 @@
     width: 20%;
 }
 
+.btnMenuAfterGame{
+    padding: 15px 20px;
+    font-size: 1.8vw;
+    margin-top: 0px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(145, 145, 145);
+    font-family: Cinzel;
+    width: 20%;
+}
+
 .check_answ{
     padding: 15px 20px;
     font-size: 1.8vw;
-    margin-bottom: 3vh;
     margin-top: 0px;
     border-radius: 12px;
     border: none;
@@ -62,5 +73,4 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 0;
 }

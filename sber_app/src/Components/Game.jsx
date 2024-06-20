@@ -7,10 +7,9 @@ import ButtonMenu from './ButtonMenu';
 import { useNavigate } from 'react-router-dom';
 import { GenreContext } from '../hook/context';
 import { spatnavInstance, useSection } from '@salutejs/spatial';
-import { black } from '@salutejs/plasma-tokens';
 
 
-const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) => {
+const Game = ({res, setModalRes, assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) => {
     //rgb(255,36,0)- неверный ответ  rgb(0, 238, 4) - верный ответ
     const [currentQuestions, setCurrentQuestions] = useState(0);
     const [arrayQuestions, setArrayQuestions] = useState([]);
@@ -82,6 +81,7 @@ const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) =
     useEffect(() =>{
         setArrayQuestions(ArrayQuestionsQuotes(genre));
         spatnavInstance.focus('GameButton');
+        setModalRes(false);
     }, [])
 
     const checkAnsw = (number) => {
@@ -90,11 +90,21 @@ const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) =
         const afterClick = btn.map((o, index) => {
             if(index === number && (number + 1) === arrayQuestions[currentQuestions].validAnswers){
                 setCorrectAnswers(correctAnswers + 1);
-                assistant_global(null, "correctAnsw");
+                if(isLastQuestions()){
+                    assistant_global(null, "suggestRes")
+                }
+                else{
+                    assistant_global(null, "correctAnsw");
+                }
                 return {...o, background: "rgb(0, 238, 4)", color: "white"};
             }
             else if(index === number && (number + 1) !== arrayQuestions[currentQuestions].validAnswers){
-                assistant_global(null, "uncorrectAnsw");
+                if(isLastQuestions()){
+                    assistant_global(null, "suggestRes")
+                }
+                else{
+                    assistant_global(null, "uncorrectAnsw");
+                }
                 return {...o, background: "rgb(255,36,0)", color: "white"};
             }
             else if(index === arrayQuestions[currentQuestions].validAnswers - 1){
@@ -103,26 +113,9 @@ const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) =
             else{
                 return{...o, background: "white", color: "black"};
             }
-        })
+        });
         setBtnColor(afterClick);
         setOffGameButton(true);
-    }
-
-    const handleClickBtnMenu = (e) => {
-        router("/");
-        setBtnMenuState(false);
-    }
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        setCurrentQuestions(currentQuestions + 1)
-        setBtnState(false);
-        const afterClick = btn.map((o) => {
-           return {...o, background: "white", color: "black"};
-        })
-        setBtnColor(afterClick);
-        setOffGameButton(false);
-        setBtnMenuState(false);
     }
 
     return (
@@ -165,7 +158,7 @@ const Game = ({assistant_global, menu, setMenu, answ, setAnsw, next, setNext}) =
                 </button>
             </div>
             {isLastQuestions()
-                ? <ButtonMenu state_btnMenu = {BtnMenuState} handleClick={assistant_global}/>
+                ? <ButtonMenu res={res} setModalRes={setModalRes} correctAnswers={correctAnswers} state_btnMenu = {BtnMenuState} handleClick={assistant_global}/>
                 : <ButtonNextQuest state_btn = {btnState} handleClick={assistant_global}/>
             }
         </div>

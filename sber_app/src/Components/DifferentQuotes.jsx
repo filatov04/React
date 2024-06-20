@@ -21,6 +21,7 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
     spatnavInstance.focus('returnMenu');
   },[])
 
+  
   useEffect(() =>{
     const result = scale.filter((temp) => temp.status !== false)
     if(result.length !== 0){
@@ -97,6 +98,8 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
           )}
         </div>
       </div>
+      <div style={{height:'170px'}}></div>
+      <div className='panel'></div>
     </div>    
   )
 }

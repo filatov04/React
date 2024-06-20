@@ -1,0 +1,19 @@
+.mainDivBtnRes{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.divBtnRes{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.divModalRes{
+    align-items: center;
+    justify-content: space-around;
+}
+
