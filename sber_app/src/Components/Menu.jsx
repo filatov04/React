@@ -29,6 +29,8 @@ const  Menu = ({assistant_global, state, setState, AssistantGenre, setAssistantG
       return () => clearInterval(intervalId);
     }, []);
 
+    
+
     useEffect(() => {
       setModalActive1(state);
       if(state){

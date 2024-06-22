@@ -4,7 +4,7 @@ body,
 .App {
   width: 100% !important;
   height: 100% !important;
-  background-image: url(../jpg/newBackEx2.JPG);
+  background-image: url(../jpg/backExample2.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;

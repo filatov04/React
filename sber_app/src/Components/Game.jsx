@@ -36,7 +36,7 @@ const Game = ({res, setModalRes, assistant_global, menu, setMenu, answ, setAnsw,
 
     useEffect(() => {
         if(menu){
-            router('/');
+            window.history.go(-1);
             setMenu(false);
             setBtnMenuState(false);
         }
@@ -96,7 +96,7 @@ const Game = ({res, setModalRes, assistant_global, menu, setMenu, answ, setAnsw,
                 else{
                     assistant_global(null, "correctAnsw");
                 }
-                return {...o, background: "rgb(0, 238, 4)", color: "white"};
+                return {...o, background: "rgb(0, 180, 3)", color: "white"};
             }
             else if(index === number && (number + 1) !== arrayQuestions[currentQuestions].validAnswers){
                 if(isLastQuestions()){
@@ -105,10 +105,10 @@ const Game = ({res, setModalRes, assistant_global, menu, setMenu, answ, setAnsw,
                 else{
                     assistant_global(null, "uncorrectAnsw");
                 }
-                return {...o, background: "rgb(255,36,0)", color: "white"};
+                return {...o, background: "rgb(197, 26, 0)", color: "white"};
             }
             else if(index === arrayQuestions[currentQuestions].validAnswers - 1){
-                return {...o, background: "rgb(0, 238, 4)", color: "white"};
+                return {...o, background: "rgb(0, 180, 3)", color: "white"};
             }
             else{
                 return{...o, background: "white", color: "black"};

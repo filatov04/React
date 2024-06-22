@@ -17,6 +17,7 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
   const [allQuote, customizeAllQuote] = useSection('AllQuote');
   const ref = useRef(null);
 
+
   useEffect(() => {
     spatnavInstance.focus('returnMenu');
   },[])
@@ -78,7 +79,7 @@ const DifferentQuotes = ({assistant_global, scale, setScale, returnMenuState, se
 
   useEffect(() => {
     if(returnMenuState){
-      router('/');
+      window.history.go(-1);
       setReturnMenuState(false);
     }
   }, [returnMenuState]);
