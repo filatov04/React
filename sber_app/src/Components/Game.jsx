@@ -25,12 +25,23 @@ const Game = ({res, setModalRes, assistant_global, menu, setMenu, answ, setAnsw,
     const [gameButtonSection, customizeGameButton] = useSection('GameButton');
 
     useEffect(() => {
-        if(answ !== null){
-            customizeGameButton({
-                disabled: true,
-            })
-            checkAnsw(answ - 1);
-            setAnsw(null);
+        if(currentQuestions !== 9){
+            if(answ !== null && btnState === false ){
+                customizeGameButton({
+                    disabled: true,
+                })
+                checkAnsw(answ - 1);
+                setAnsw(null);
+            }
+        }
+        else{
+            if(answ !== null && BtnMenuState === false ){
+                customizeGameButton({
+                    disabled: true,
+                })
+                checkAnsw(answ - 1);
+                setAnsw(null);
+            }
         }
     }, [answ])
 
